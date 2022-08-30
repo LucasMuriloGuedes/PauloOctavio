@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Imovel</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="http://localhost:8080/home">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/cadastrandoimovel">Cadastro de Imoveis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/listEmpreendimento">Cadastro de Empreendimentos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/listatualizacaobase">Atualizar Lista</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Baixar Arquivos</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search" method="POST" ACTION="/home">
+                <input class="form-control me-2" type="search" placeholder="Digite o N° do Imovel" aria-label="Imovel"
+                       name="imovel">
+                <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<br>
+<form class="row g-3" method="POST" ACTION="/cadastrarempreendimento">
+    <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">Nome</label>
+        <input class="form-control" id="inputEmail4" name="nome">
+    </div>
+    <div class="col-md-3">
+        <label for="cnpj" class="form-label">CNPJ</label>
+        <input class="form-control" id="cnpj" name="cnpj">
+    </div>
+    <div class="col-md-3">
+        <label for="empreed" class="form-label">Empreendimento</label>
+        <select class="form-select" id="empreed" name="empreed">
+            <option selected></option>
+            <option value="BSB">BSB</option>
+            <option value="JKS">JKS</option>
+            <option value="TER">TER</option>
+            <option value="TGS">TGS</option>
+            <option value="TGS SALAS">TGS SALAS</option>
+        </select>
+    </div>
+    <div class="col-8">
+        <label for="endereco" class="form-label">Rua</label>
+        <input type="text" class="form-control" id="endereco" name="rua">
+    </div>
+    <div class="col-4">
+        <label for="numero" class="form-label">Número</label>
+        <input type="text" class="form-control" id="numero" name="numero">
+    </div>
+    <div class="col-md-8">
+        <label for="cidade" class="form-label">Cidade</label>
+        <input type="text" class="form-control" id="cidade" name="cidade">
+    </div>
+    <div class="col-md-4">
+        <label for="estado" class="form-label">Estado</label>
+        <select class="form-select" id="estado" name="estado">
+            <option selected></option>
+            <option value="AC">Acre</option>
+            <option value="AL">Alagoas</option>
+            <option value="AP">Amapá</option>
+            <option value="AM">Amazonas</option>
+            <option value="BA">Bahia</option>
+            <option value="CE">Ceará</option>
+            <option value="DF">Distrito Federal</option>
+            <option value="ES">Espírito Santo</option>
+            <option value="GO">Goiás</option>
+            <option value="MA">Maranhão</option>
+            <option value="MT">Mato Grosso</option>
+            <option value="MS">Mato Grosso do Sul</option>
+            <option value="MG">Minas Gerais</option>
+            <option value="PA">Pará</option>
+            <option value="PB">Paraíba</option>
+            <option value="PR">Paraná</option>
+            <option value="PE">Pernambuco</option>
+            <option value="PI">Piauí</option>
+            <option value="RJ">Rio de Janeiro</option>
+            <option value="RN">Rio Grande do Norte</option>
+            <option value="RS">Rio Grande do Sul</option>
+            <option value="RO">Rondônia</option>
+            <option value="RR">Roraima</option>
+            <option value="SC">Santa Catarina</option>
+            <option value="SP">São Paulo</option>
+            <option value="SE">Sergipe</option>
+            <option value="TO">Tocantins</option>
+            <option value="EX">Estrangeiro</option>
+        </select>
+    </div>
+    <div class="col-6">
+        <label for="banco" class="form-label">Banco</label>
+        <input type="text" class="form-control" id="banco" name="banco">
+    </div>
+    <div class="col-3">
+        <label for="agencia" class="form-label">Agência</label>
+        <input type="text" class="form-control" id="agencia" name="agencia">
+    </div>
+    <div class="col-md-3">
+        <label for="conta" class="form-label">Conta</label>
+        <input type="text" class="form-control" id="conta" name="conta">
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-outline-success">Cadastrar</button>
+    </div>
+</form>
+<br>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">CNPJ</th>
+        <th scope="col">Empreendimento</th>
+        <th scope="col">Rua</th>
+        <th scope="col">Numero</th>
+        <th scope="col">Cidade</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Banco</th>
+        <th scope="col">Agência</th>
+        <th scope="col">Conta</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="x : ${obj}">
+        <td data-th-text="${x.id}"></td>
+        <td data-th-text="${x.nome}"></td>
+        <td data-th-text="${x.cnpj}"></td>
+        <td data-th-text="${x.empreed}"></td>
+        <td data-th-text="${x.rua}"></td>
+        <td data-th-text="${x.numero}"></td>
+        <td data-th-text="${x.cidade}"></td>
+        <td data-th-text="${x.estado}"></td>
+        <td data-th-text="${x.banco}"></td>
+        <td data-th-text="${x.agencia}"></td>
+        <td data-th-text="${x.conta}"></td>
+        <td id="idEditButton"><a id="editButton" class="btn btn-outline-success" th:value="${x.id} + '/' + ${x.nome} +'/'
+         + ${x.cnpj} +'/' + ${x.empreed} +'/' + ${x.rua}+'/' + ${x.numero}+'/' + ${x.cidade}+'/' + ${x.estado}+'/' + ${x.banco} +'/' + ${x.agencia} +'/' + ${x.conta}"
+                               >Editar</a>
+            <a id="deleteButton" class="btn btn-outline-danger"
+               th:value="@{/excluirempreendimento/{id}(id=${x.id})}">Excluir</a></td>
+    </tbody>
+</table>
+<div id="janelaModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir Imovel</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Deseja realmente excluir o imovel?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="" id="btnExcluir" class="btn btn-danger">Excluir</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="janelaModalEditar" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Imovel</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Deseja Alterar os Dados do Empreendimento?</p>
+            </div>
+            <form method="POST" ACTION="/updateempreendimento">
+                <input class="form-control me-2" type="search" placeholder="Id" id="idModal"
+                       name="id">
+                <input class="form-control me-2" type="search" placeholder="nome" id="nomeModal"
+                       name="nome"><br>
+                <input class="form-control me-2" type="search" placeholder="cnpj" id="cnpjModal"
+                       name="cnpj"><br>
+                <select class="form-select" aria-label="Default select example" name="empreed" id="empreedModal">
+                    <option selected>Selecione o Empreendimento</option>
+                    <option value="BSB">BSB</option>
+                    <option value="JKS">JKS</option>
+                    <option value="TER">TER</option>
+                    <option value="TGS">TGS</option>
+                    <option value="TGS SALAS">TGS SALAS</option>
+                </select><br>
+                <input class="form-control me-2" type="search" placeholder="Rua" id="ruaModal"
+                       name="rua"><br>
+                <input class="form-control me-2" type="search" placeholder="Número" id="numeroModal"
+                       name="numero"><br>
+                    <input class="form-control me-2" type="search" placeholder="Cidade" id="cidadeModal"
+                       name="cidade"><br>
+                <select class="form-select" name="estado" id="estadoModal">
+                    <option selected>Selecione o Estado</option>
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                    <option value="EX">Estrangeiro</option>
+                </select><br>
+                <input class="form-control me-2" type="search" placeholder="Banco" id="bancoModal"
+                       name="banco"><br>
+                <input class="form-control me-2" type="search" placeholder="Agência" id="agenciaModal"
+                       name="agencia"><br>
+                <input class="form-control me-2" type="search" placeholder="Conta" id="contaModal"
+                       name="conta"><br>
+                <div class="modal-footer">
+                    <button id="btnEnviaEdicao" class="btn btn-success" type="submit">Editar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $('document').ready(function () {
+        $('table #deleteButton').on('click', function () {
+            var href = $(this).attr('value');
+            $('#janelaModal #btnExcluir').attr('href', href)
+            $('#janelaModal').modal();
+        });
+
+        $('table #editButton').on('click', function () {
+            var valores = $(this).attr('value');
+            console.log(valores)
+            const valoresSplit = valores.split("/");
+            let id = valoresSplit[0];
+            let nome = valoresSplit[1];
+            let cnpj = valoresSplit[2];
+            let empreendimento = valoresSplit[3];
+            let rua = valoresSplit[4];
+            let numero = valoresSplit[5];
+            let cidade = valoresSplit[6];
+            let estado = valoresSplit[7];
+            let banco = valoresSplit[8];
+            let agencia = valoresSplit[9];
+            let conta = valoresSplit[10];
+
+            $('#janelaModalEditar #idModal').val(id);
+            $('#janelaModalEditar #idModal').hide();
+            $('#janelaModalEditar #nomeModal').val(nome);
+            $('#janelaModalEditar #cnpjModal').val(cnpj);
+            $('#janelaModalEditar #empreedModal').val(empreendimento);
+            $('#janelaModalEditar #ruaModal').val(rua);
+            $('#janelaModalEditar #numeroModal').val(numero);
+            $('#janelaModalEditar #cidadeModal').val(cidade);
+            $('#janelaModalEditar #estadoModal').val(estado);
+            $('#janelaModalEditar #bancoModal').val(banco);
+            $('#janelaModalEditar #agenciaModal').val(agencia);
+            $('#janelaModalEditar #contaModal').val(conta);
+            $('#janelaModalEditar').modal();
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Imovel</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="http://localhost:8080/home">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/cadastrandoimovel">Cadastrar Imovel</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/listEmpreendimento">Cadastro de Empreendimentos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/listatualizacaobase">Atualizar Lista</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Baixar Arquivos</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search" method="POST" ACTION="/home">
+                <input class="form-control me-2" type="search" placeholder="Digite o N° do Imovel" aria-label="Imovel"
+                       name="imovel">
+                <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<br>
+<form class="d-flex" role="search" method="POST" ACTION="/cadastrarimovel">
+    <input class="form-control me-2" type="search" placeholder="Imovel" aria-label="Imovel" name="numeroImovel">
+    <select class="form-select hide form-control me-2" aria-label="Default select example"
+            name="empreendimento">
+        <option selected>Selecione o Empreendimento</option>
+        <option value="BSB">BSB</option>
+        <option value="BSB">JKS</option>
+        <option value="TER">TER</option>
+        <option value="TGS">TGS</option>
+        <option value="TGS SALAS">TGS SALAS</option>
+    </select>
+    <button class="btn btn-outline-success" type="submit">Cadastrar</button>
+</form>
+<br>
+<nav class="navbar navbar-expand-lg bg-light">
+            <form class="d-flex" method="GET" ACTION="/findByEmpreendimento">
+                <select class="form-select hide form-control me-2" aria-label="Default select example"
+                        name="tipoEmpreendimento" id="tipoEmpreendimento">
+                    <option selected>Selecione o Empreendimento</option>
+                    <option value="BSB">BSB</option>
+                    <option value="JKS">JKS</option>
+                    <option value="TER">TER</option>
+                    <option value="TGS">TGS</option>
+                    <option value="TGS SALAS">TGS SALAS</option>
+                </select>
+                <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+            </form>
+    <form class="d-flex ms-5" method="GET" ACTION="/findByNumeroImovel">
+        <input class="form-control me-2" type="search" placeholder="Imovel" aria-label="Imovel" name="imovel">
+        <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+    </form>
+</nav>
+<br>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Imovel</th>
+        <th scope="col">Empreendimento</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="x : ${obj}">
+        <td data-th-text="${x.id}"></td>
+        <td data-th-text="${x.numeroImovel}"></td>
+        <td data-th-text="${x.empreendimento}"></td>
+        <td id="idEditButton"><a id="editButton" class="btn btn-outline-success"
+                                 th:value="${x.id} + '/' + ${x.numeroImovel} +'/' + ${x.empreendimento}">Editar</a>
+            <a id="deleteButton" class="btn btn-outline-danger"
+               th:value="@{/excluirimovel/{id}(id=${x.id})}">Excluir</a></td>
+    </tbody>
+</table>
+<div id="paginacao" class="container">
+    <div th:if="${obj.totalPages > 0}" class="pagination"
+         th:each="pageNumber : ${pageNumbers}">
+        <a class="page-link" th:href="@{/cadastrandoimovel(size=${obj.size}, page=${pageNumber})}"
+           th:text=${pageNumber}></a>
+    </div>
+</div>
+<div id="janelaModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir Imovel</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Deseja realmente excluir o imovel?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="" id="btnExcluir" class="btn btn-danger">Excluir</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="janelaModalEditar" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Imovel</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Deseja Alterar os Dados do Imovel?</p>
+            </div>
+            <form method="POST" ACTION="/updateImovel">
+                <input class="form-control me-2" type="search" placeholder="Id" aria-label="idImovel" id="idImovel"
+                       name="id">
+                <input class="form-control me-2" type="search" placeholder="Imovel" aria-label="Imovel"
+                       id="numeroImovel" name="numeroImovel"><br>
+                <select class="form-select" aria-label="Default select example" name="empreendimento" id="empreendimento">
+                    <option selected>Selecione o Empreendimento</option>
+                    <option value="BSB">BSB</option>
+                    <option value="JKS">JKS</option>
+                    <option value="TER">TER</option>
+                    <option value="TGS">TGS</option>
+                    <option value="TGS SALAS">TGS SALAS</option>
+                </select><br>
+                <div class="modal-footer">
+                    <button id="btnEnviaEdicao" class="btn btn-success" type="submit">Editar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $('document').ready(function () {
+        $('table #deleteButton').on('click', function () {
+            var href = $(this).attr('value');
+            $('#janelaModal #btnExcluir').attr('href', href)
+            $('#janelaModal').modal();
+        });
+
+        $('table #editButton').on('click', function () {
+            var valores = $(this).attr('value');
+            const valoresSplit = valores.split("/");
+            let id = valoresSplit[0];
+            let numeroImovel = valoresSplit[1];
+            let empreendimento = valoresSplit[2];
+
+            $('#janelaModalEditar #idImovel').attr('value', id);
+            $('#janelaModalEditar #idImovel').hide();
+            $('#janelaModalEditar #numeroImovel').attr('value', numeroImovel);
+            $('#janelaModalEditar #empreendimento').val(empreendimento);
+            $('#janelaModalEditar').modal();
+        });
+    });
+</script>
+</body>
+</html>

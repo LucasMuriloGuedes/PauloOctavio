@@ -1,0 +1,36 @@
+body{
+    padding: 10px;
+}
+
+div{
+    padding: 10px
+}
+img{
+    border: none;
+}
+
+#paginacao{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#teste{
+    margin-left: 50px;
+}
+#formPesquisa{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#divBarraProgresso{
+    display: none;
+}
+
+#divInfo{
+    display: none;
+}
+
